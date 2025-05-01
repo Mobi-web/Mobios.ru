@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zed - Интернет-магазин</title>
+  <title>МойМаркет - Интернет-магазин</title>
   <meta name="description" content="Интернет-магазин одежды, обуви и аксессуаров в стиле Wildberries. Широкий ассортимент, акции и скидки.">
-  <meta name="keywords" content="интернет-магазин, одежда, обувь, аксессуары, Wildberries, ZED">
+  <meta name="keywords" content="интернет-магазин, одежда, обувь, аксессуары, Wildberries, МойМаркет">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
@@ -179,7 +179,7 @@
         </select>
         <select id="currency" class="bg-transparent text-white border-none">
           <option value="rub">₽ RUB</option>
-          <option value="usd">$ USD</option>
+          <option value="usd">\\$ USD</option>
         </select>
         <button id="dark-mode-toggle" class="text-white">🌙</button>
         <button id="login-toggle" class="hover:underline text-sm">Личный кабинет</button>
@@ -522,7 +522,7 @@
   <footer class="bg-gray-900 text-white p-6 mt-12">
     <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
       <div>
-        <h3 class="font-bold mb-4">ZED</h3>
+        <h3 class="font-bold mb-4">МойМаркет</h3>
         <p class="text-sm">Интернет-магазин в стиле Wildberries</p>
       </div>
       <div>
@@ -543,11 +543,11 @@
       </div>
       <div>
         <h3 class="font-bold mb-4">Контакты</h3>
-        <p class="text-sm">Email: support@Zed.ru</p>
-        <p class="text-sm">Телефон: 8 (996)4684744</p>
+        <p class="text-sm">Email: support@moymarket.ru</p>
+        <p class="text-sm">Телефон: 8 (800) 555-35-35</p>
       </div>
     </div>
-    <div class="text-center text-sm mt-8">© 2025 ZED. Все права защищены.</div>
+    <div class="text-center text-sm mt-8">© 2025 МойМаркет. Все права защищены.</div>
   </footer>
 
   <script>
@@ -732,7 +732,7 @@
         const availabilityText = product.availability === 'in_stock' ? (language === 'ru' ? 'В наличии' : 'In stock') : (language === 'ru' ? 'Нет в наличии' : 'Out of stock');
         const productCard = `
           <div class="bg-white rounded-lg shadow-md overflow-hidden product-card relative">
-            ${discountTag}
+            \\${discountTag}
             <img src="${product.images[0]}" alt="${product.name}" class="w-full h-48 object-cover">
             <button onclick="toggleFavoriteFromList(${product.id}, event)" class="absolute top-2 right-2 text-2xl ${isFavorite ? 'text-red-500' : 'text-gray-300'} hover:text-red-500 transition-colors">❤</button>
             <div class="p-4">
@@ -741,7 +741,7 @@
               <p class="text-yellow-500 text-sm mt-1">${'★'.repeat(product.rating)}${'☆'.repeat(5 - product.rating)}</p>
               <p class="text-sm ${product.availability === 'in_stock' ? 'text-green-500' : 'text-red-500'}">${availabilityText}</p>
               ${promoTag}
-              <button onclick="openQuickView(${product.id})" class="quick-view wb-pink text-white px-4 py-1 rounded-full hover:bg-pink-700 text-sm mt-2">${language === 'ru' ? 'Быстрый просмотр' : 'Quick View'}</button>
+              <button onclick="openQuickView(${product.id})" class="quick-view wb-pink text-white px-4 py-1 rounded-full hover:bg-pink-700 text-sm mt-2">\\${language === 'ru' ? 'Быстрый просмотр' : 'Quick View'}</button>
             </div>
           </div>
         `;
@@ -805,9 +805,9 @@
       // Render reviews
       reviewsContainer.innerHTML = selectedProduct.reviews.map(review => `
         <div class="border-b pb-4">
-          <p class="font-semibold">${review.user}</p>
+          <p class="font-semibold">\\${review.user}</p>
           <p class="text-yellow-500">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</p>
-          <p>${review.text}</p>
+          <p>\\${review.text}</p>
         </div>
       `).join('');
 
@@ -816,11 +816,11 @@
       recommendedProducts.innerHTML = recommended.map(product => {
         const recPrice = currency === 'usd' ? (product.price / 75).toFixed(2) : product.price;
         return `
-          <div class="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer" onclick="openProductModal(${product.id})">
+          <div class="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer" onclick="openProductModal(\\${product.id})">
             <img src="${product.images[0]}" alt="${product.name}" class="w-full h-24 object-cover">
             <div class="p-2">
               <h4 class="text-sm font-semibold wb-text-purple truncate">${product.name}</h4>
-              <p class="text-gray-600 text-sm">${recPrice} ${currency === 'usd' ? '$' : '₽'}</p>
+              <p class="text-gray-600 text-sm">${recPrice} \\${currency === 'usd' ? '\\$' : '₽'}</p>
             </div>
           </div>
         `;
@@ -918,14 +918,14 @@
               <div>
                 <p class="wb-text-purple font-medium">${item.name}</p>
                 <p class="text-gray-600 text-sm">${item.size}, ${item.color}</p>
-                <p class="text-gray-700">${itemPrice * item.quantity} ${currency === 'usd' ? '$' : '₽'}</p>
+                <p class="text-gray-700">${itemPrice * item.quantity} \\${currency === 'usd' ? '\\$' : '₽'}</p>
               </div>
             </div>
             <div class="flex items-center space-x-2">
               <button onclick="updateCartQuantity(${item.id}, '${item.size}', '${item.color}', ${item.quantity - 1})" class="bg-gray-200 px-2 py-1 rounded-full hover:bg-gray-300">-</button>
               <span class="font-medium">${item.quantity}</span>
               <button onclick="updateCartQuantity(${item.id}, '${item.size}', '${item.color}', ${item.quantity + 1})" class="bg-gray-200 px-2 py-1 rounded-full hover:bg-gray-300">+</button>
-              <button onclick="removeFromCart(${item.id}, '${item.size}', '${item.color}')" class="text-red-500 hover:underline text-sm">${language === 'ru' ? 'Удалить' : 'Remove'}</button>
+              <button onclick="removeFromCart(${item.id}, '${item.size}', '${item.color}')" class="text-red-500 hover:underline text-sm">\\${language === 'ru' ? 'Удалить' : 'Remove'}</button>
             </div>
           </div>
         `;
@@ -980,13 +980,13 @@
         const favoriteItem = `
           <div class="flex justify-between items-center mb-4 border-b pb-4">
             <div class="flex items-center">
-              <img src="${item.images[0]}" alt="${item.name}" class="w-16 h-16 object-cover rounded-lg mr-4">
+              <img src="\\${item.images[0]}" alt="${item.name}" class="w-16 h-16 object-cover rounded-lg mr-4">
               <div>
                 <p class="wb-text-purple font-medium">${item.name}</p>
-                <p class="text-gray-700">${itemPrice} ${currency === 'usd' ? '$' : '₽'}</p>
+                <p class="text-gray-700">${itemPrice} ${currency === 'usd' ? '\\$' : '₽'}</p>
               </div>
             </div>
-            <button onclick="toggleFavoriteFromList(${item.id}, event)" class="text-red-500 hover:underline text-sm">${language === 'ru' ? 'Удалить' : 'Remove'}</button>
+            <button onclick="toggleFavoriteFromList(\\${item.id}, event)" class="text-red-500 hover:underline text-sm">\\${language === 'ru' ? 'Удалить' : 'Remove'}</button>
           </div>
         `;
         favoritesItemsContainer.innerHTML += favoriteItem;
@@ -1096,11 +1096,11 @@
         const price = currency === 'usd' ? (product.price / 75).toFixed(2) : product.price;
         return `
           <div class="p-4 border rounded-lg">
-            <img src="${product.images[0]}" alt="${product.name}" class="w-full h-32 object-cover rounded-lg mb-2">
+            <img src="\\${product.images[0]}" alt="${product.name}" class="w-full h-32 object-cover rounded-lg mb-2">
             <h3 class="font-semibold wb-text-purple">${product.name}</h3>
-            <p class="text-gray-600">${price} ${currency === 'usd' ? '$' : '₽'}</p>
-            <p class="text-yellow-500">${'★'.repeat(product.rating)}${'☆'.repeat(5 - product.rating)}</p>
-            <button onclick="removeFromCompare(${product.id})" class="text-red-500 hover:underline text-sm mt-2">${language === 'ru' ? 'Удалить' : 'Remove'}</button>
+            <p class="text-gray-600">${price} ${currency === 'usd' ? '\\$' : '₽'}</p>
+            <p class="text-yellow-500">\\${'★'.repeat(product.rating)}${'☆'.repeat(5 - product.rating)}</p>
+            <button onclick="removeFromCompare(${product.id})" class="text-red-500 hover:underline text-sm mt-2">\\${language === 'ru' ? 'Удалить' : 'Remove'}</button>
           </div>
         `;
       }).join('');

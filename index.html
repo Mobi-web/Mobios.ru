@@ -173,30 +173,24 @@
 
         <!-- Dropdown Menu for Settings -->
         <div class="relative inline-block text-left">
-          <button type="button" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="menu-button" aria-expanded="true" aria-haspopup="true">
+          <button id="settings-toggle" class="text-gray-700 block w-full px-4 py-2 text-left text-sm">
             Настройки
-            <svg class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path d="M10 7l-5 5h3v4h4v-4h3l-5-5zm0-2l-5 5h3v6h4v-6h3l-5-5z" />
-            </svg>
           </button>
-        </div>
-
-        <div class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-          <div class="py-1" role="none">
-            <!-- Dark Mode Toggle -->
-            <button id="dark-mode-toggle" class="text-gray-700 block w-full px-4 py-2 text-left text-sm" role="menuitem" tabindex="-1">
-              🌙 Тёмный режим
-            </button>
-
-            <!-- Language Toggle -->
-            <button id="language-toggle" class="text-gray-700 block w-full px-4 py-2 text-left text-sm" role="menuitem" tabindex="-1">
-              Русский
-            </button>
-
-            <!-- Currency Toggle -->
-            <button id="currency-toggle" class="text-gray-700 block w-full px-4 py-2 text-left text-sm" role="menuitem" tabindex="-1">
-              ₽ RUB
-            </button>
+          <div class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden" role="menu" aria-orientation="vertical" aria-labelledby="settings-toggle" id="settings-menu">
+            <div class="py-1" role="none">
+              <!-- Dark Mode Toggle -->
+              <button id="dark-mode-toggle" class="text-gray-700 block w-full px-4 py-2 text-left text-sm" role="menuitem" tabindex="-1">
+                🌙 Тёмный режим
+              </button>
+              <!-- Language Toggle -->
+              <button id="language-toggle" class="text-gray-700 block w-full px-4 py-2 text-left text-sm" role="menuitem" tabindex="-1">
+                Русский
+              </button>
+              <!-- Currency Toggle -->
+              <button id="currency-toggle" class="text-gray-700 block w-full px-4 py-2 text-left text-sm" role="menuitem" tabindex="-1">
+                ₽ RUB
+              </button>
+            </div>
           </div>
         </div>
 
@@ -647,8 +641,8 @@
     const orderStatus = document.getElementById('order-status');
     const closeTrackOrder = document.getElementById('close-track-order');
     const notification = document.getElementById('notification');
-    const languageSelect = document.getElementById('language-toggle');
-    const currencySelect = document.getElementById('currency-toggle');
+    const languageToggle = document.getElementById('language-toggle');
+    const currencyToggle = document.getElementById('currency-toggle');
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const reviewsContainer = document.getElementById('reviews');
     const reviewText = document.getElementById('review-text');
@@ -669,6 +663,8 @@
     const chatbotMessages = document.getElementById('chatbot-messages');
     const chatbotInput = document.getElementById('chatbot-input');
     const chatbotSend = document.getElementById('chatbot-send');
+    const settingsToggle = document.getElementById('settings-toggle');
+    const settingsMenu = document.getElementById('settings-menu');
 
     // Show notification function
     function showNotification(message) {
@@ -1119,16 +1115,18 @@
     cancelEdit.addEventListener('click', () => editProfileForm.classList.add('hidden'));
 
     // Language and currency switch
-    languageSelect.addEventListener('click', (e) => {
+    languageToggle.addEventListener('click', () => {
       language = language === 'ru' ? 'en' : 'ru';
       showNotification(language === 'ru' ? 'Язык изменён' : 'Language changed');
       renderProducts(applyFilters(true));
       updateChatbotUI();
+      settingsMenu.classList.toggle('hidden');
     });
-    currencySelect.addEventListener('click', (e) => {
+    currencyToggle.addEventListener('click', () => {
       currency = currency === 'rub' ? 'usd' : 'rub';
       renderProducts(applyFilters(true));
       updateCart();
+      settingsMenu.classList.toggle('hidden');
     });
 
     // Dark mode toggle
@@ -1136,6 +1134,7 @@
       darkMode = !darkMode;
       document.body.classList.toggle('dark-mode');
       darkModeToggle.textContent = darkMode ? '☀️' : '🌙';
+      settingsMenu.classList.toggle('hidden');
     });
 
     // Chatbot functionality
@@ -1283,6 +1282,9 @@
     document.addEventListener('click', (e) => {
       if (!sidebar.contains(e.target) && !menuToggle.contains(e.target) && !e.target.closest('.category')) {
         sidebar.classList.remove('open');
+      }
+      if (!settingsMenu.contains(e.target) && !settingsToggle.contains(e.target)) {
+        settingsMenu.classList.add('hidden');
       }
     });
 

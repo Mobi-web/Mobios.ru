@@ -1,11 +1,11 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mobi - Интернет-магазин</title>
-  <meta name="description" content="Интернет-магазин одежды, обуви и аксессуаров в Mobios. Широкий ассортимент, акции и скидки.">
-  <meta name="keywords" content="интернет-магазин, одежда, обувь, аксессуары, Mobios">
+  <title>МойМаркет - Интернет-магазин</title>
+  <meta name="description" content="Интернет-магазин одежды, обуви и аксессуаров в стиле Wildberries. Широкий ассортимент, акции и скидки.">
+  <meta name="keywords" content="интернет-магазин, одежда, обувь, аксессуары, Wildberries, МойМаркет">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
@@ -31,11 +31,6 @@
       position: absolute;
       top: -8px;
       right: -8px;
-    }
-    select option:checked
-    {
-    background-color: #007bff;
-    color: #fff;
     }
     .carousel {
       scroll-behavior: smooth;
@@ -180,43 +175,37 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
           </svg>
         </button>
-        <h1 class="text-2xl font-bold">Mobi</h1>
+        <h1 class="text-2xl font-bold">МойМаркет</h1>
       </div>
       <div class="flex items-center space-x-6">
         <div class="relative">
           <input type="text" id="search" placeholder="Поиск товаров, брендов, категорий..." class="p-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500 w-64 hidden md:block">
           <div id="search-suggestions" class="suggestions"></div>
         </div>
-        <select id="language" class="bg-transparent text-white border-none" onChange="myFunction()">
-          <option value="ru">Рус</option>
-          <option value="en">Eng</option>
+        <select id="language" class="bg-transparent text-white border-none">
+          <option value="ru">Русский</option>
+          <option value="en">English</option>
+        </select>
+        <select id="currency" class="bg-transparent text-white border-none">
+          <option value="rub">₽ RUB</option>
+          <option value="usd">\\$ USD</option>
         </select>
         <button id="dark-mode-toggle" class="text-white">🌙</button>
-        <button id="login-toggle" class="hover:underline text-sm">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF">
-            <path d="M234-276q51-39 114-61.5T480-360q69 0 132 22.5T726-276q35-41 54.5-93T800-480q0-133-93.5-226.5T480-800q-133 0-226.5 93.5T160-480q0 59 19.5 111t54.5 93Zm246-164q-59 0-99.5-40.5T340-580q0-59 40.5-99.5T480-720q59 0 99.5 40.5T620-580q0 59-40.5 99.5T480-440Zm0 360q-83 0-156-31.5T197-197q-54-54-85.5-127T80-480q0-83 31.5-156T197-763q54-54 127-85.5T480-880q83 0 156 31.5T763-763q54 54 85.5 127T880-480q0 83-31.5 156T763-197q-54 54-127 85.5T480-80Zm0-80q53 0 100-15.5t86-44.5q-39-29-86-44.5T480-280q-53 0-100 15.5T294-220q39 29 86 44.5T480-160Zm0-360q26 0 43-17t17-43q0-26-17-43t-43-17q-26 0-43 17t-17 43q0 26 17 43t43 17Zm0-60Zm0 360Z"/>
-          </svg>
-        </button>
+        <button id="login-toggle" class="hover:underline text-sm">Личный кабинет</button>
         <div class="relative">
           <button id="favorites-toggle" class="hover:underline flex items-center text-sm">
-            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-            </svg>
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+            Избранное
             <span id="favorites-count" class="favorites-count">0</span>
           </button>
         </div>
         <div class="relative">
           <button id="cart-toggle" class="hover:underline flex items-center text-sm">
-            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path>
-            </svg>
+            <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+            Корзина
             <span id="cart-count" class="cart-count">0</span>
           </button>
         </div>
-        <select id="currency" class="bg-transparent text-white border-none">
-          <option value="rub">₽ RUB</option>
-          <option value="usd">$ USD</option>
-        </select>
       </div>
     </div>
   </header>
@@ -387,21 +376,15 @@
           <div class="flex space-x-4">
             <button id="add-to-cart-modal" class="wb-pink text-white px-6 py-2 rounded-full hover:bg-pink-700">В корзину</button>
             <button id="toggle-favorite" class="bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-gray-300 flex items-center">
-              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-              </svg>
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
               В избранное
             </button>
             <button id="share-product" class="bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-gray-300 flex items-center">
-              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path>
-              </svg>
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
               Поделиться
             </button>
             <button id="compare-product" class="bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-gray-300 flex items-center">
-              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h18M3 8h18M3 12h18M3 16h18M3 20h18"></path>
-              </svg>
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h18M3 8h18M3 12h18M3 16h18M3 20h18"></path></svg>
               Сравнить
             </button>
           </div>
@@ -488,9 +471,9 @@
       <h2 class="text-xl font-bold mb-6 wb-text-purple">Личный кабинет</h2>
       <div id="profile-section" class="mb-6">
         <h3 class="font-semibold mb-2">Профиль</h3>
-        <p class="text-gray-700">Имя: <span id="profile-name"></span></p>
-        <p class="text-gray-700">Email: <span id="profile-email"></span></p>
-        <p class="text-gray-700">Телефон: <span id="profile-phone">+7 </span></p>
+        <p class="text-gray-700">Имя: <span id="profile-name">Иван Иванов</span></p>
+        <p class="text-gray-700">Email: <span id="profile-email">ivan@example.com</span></p>
+        <p class="text-gray-700">Телефон: <span id="profile-phone">+7 (999) 123-45-67</span></p>
         <button id="edit-profile" class="text-sm text-blue-500 hover:underline mt-2">Редактировать</button>
       </div>
       <div id="edit-profile-form" class="hidden mb-6">
@@ -543,575 +526,616 @@
   </div>
 
   <!-- Chatbot -->
-  <button id="chatbot-toggle" class="chatbot-btn">Чат с поддержкой</button>
-  <div id="chatbot-modal" class="chatbot-modal">
-    <div id="chatbot-messages" class="p-4"></div>
-    <div class="p-4 border-t">
-      <input type="text" id="chatbot-input" placeholder="Введите сообщение..." class="w-full p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:outline-none">
-      <button id="chatbot-send" class="wb-pink text-white px-4 py-2 rounded-full hover:bg-pink-700 mt-2 w-full">Отправить</button>
-    </div>
+  <button id="chatbot-toggle" 
+  class="chatbot-btn">Чат с поддержкой</button>
+<div id="chatbot-modal" class="chatbot-modal">
+<div id="chatbot-messages" class="p-4"></div>
+<div class="p-4 border-t">
+  <input type="text" id="chatbot-input" placeholder="Введите сообщение..." class="w-full p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:outline-none">
+  <button id="chatbot-send" class="wb-pink text-white px-4 py-2 rounded-full hover:bg-pink-700 mt-2 w-full">Отправить</button>
+</div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white p-6 mt-12">
+<div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+  <div>
+    <h3 class="font-bold mb-4">МойМаркет</h3>
+    <p class="text-sm">Интернет-магазин в стиле Wildberries</p>
   </div>
+  <div>
+    <h3 class="font-bold mb-4">Покупателям</h3>
+    <ul class="space-y-2 text-sm">
+      <li><a href="#" class="hover:underline">Доставка</a></li>
+      <li><a href="#" class="hover:underline">Оплата</a></li>
+      <li><a href="#" class="hover:underline">Возврат</a></li>
+    </ul>
+  </div>
+  <div>
+    <h3 class="font-bold mb-4">Каталог</h3>
+    <ul class="space-y-2 text-sm">
+      <li><a href="#" class="hover:underline">Одежда</a></li>
+      <li><a href="#" class="hover:underline">Обувь</a></li>
+      <li><a href="#" class="hover:underline">Аксессуары</a></li>
+    </ul>
+  </div>
+  <div>
+    <h3 class="font-bold mb-4">Контакты</h3>
+    <p class="text-sm">Email: support@moymarket.ru</p>
+    <p class="text-sm">Телефон: 8 (800) 555-35-35</p>
+  </div>
+</div>
+<div class="text-center text-sm mt-8">© 2025 МойМаркет. Все права защищены.</div>
+</footer>
 
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-white p-6 mt-12">
-    <div class="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-      <div>
-        <h3 class="font-bold mb-4">Mobi</h3>
-        <p class="text-sm">Интернет-магазин Mobios</p>
-      </div>
-      <div>
-        <h3 class="font-bold mb-4">Покупателям</h3>
-        <ul class="space-y-2 text-sm">
-          <li><a href="#" class="hover:underline">Доставка</a></li>
-          <li><a href="#" class="hover:underline">Оплата</a></li>
-          <li><a href="#" class="hover:underline">Возврат</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="font-bold mb-4">Каталог</h3>
-        <ul class="space-y-2 text-sm">
-          <li><a href="#" class="hover:underline">Одежда</a></li>
-          <li><a href="#" class="hover:underline">Обувь</a></li>
-          <li><a href="#" class="hover:underline">Аксессуары</a></li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="font-bold mb-4">Контакты</h3>
-        <p class="text-sm">Email: support@moymarket.ru</p>
-        <p class="text-sm">Телефон: 8 (800) 555-35-35</p>
-      </div>
-    </div>
-    <div class="text-center text-sm mt-8">© 2025 Mobios.ru Все права защищены.</div>
-  </footer>
+<script>
+// Sample products data with availability
+const products = [
+  {
+    id: 1,
+    name: "Футболка классическая",
+    price: 999,
+    originalPrice: 1299,
+    category: "clothing",
+    brand: "BrandA",
+    rating: 4,
+    images: ["https://via.placeholder.com/300?text=Футболка+1", "https://via.placeholder.com/300?text=Футболка+2"],
+    description: "Комфортная хлопковая футболка на каждый день.",
+    sizes: ["S", "M", "L", "XL"],
+    colors: ["black", "white", "blue"],
+    discount: 23,
+    promo: "Хит продаж",
+    availability: "in_stock",
+    reviews: [
+      { user: "Иван", rating: 5, text: "Отличная футболка!" },
+      { user: "Анна", rating: 4, text: "Хорошее качество, но цвет немного не тот." }
+    ]
+  },
+  {
+    id: 2,
+    name: "Джинсы Slim Fit",
+    price: 2999,
+    originalPrice: 3999,
+    category: "clothing",
+    brand: "BrandB",
+    rating: 5,
+    images: ["https://via.placeholder.com/300?text=Джинсы+1", "https://via.placeholder.com/300?text=Джинсы+2"],
+    description: "Стильные джинсы slim fit из плотного денима.",
+    sizes: ["S", "M", "L"],
+    colors: ["black", "blue"],
+    discount: 25,
+    promo: "Новинка",
+    availability: "in_stock",
+    reviews: []
+  },
+  {
+    id: 3,
+    name: "Кроссовки беговые",
+    price: 3499,
+    category: "shoes",
+    brand: "BrandC",
+    rating: 4,
+    images: ["https://via.placeholder.com/300?text=Кроссовки+1", "https://via.placeholder.com/300?text=Кроссовки+2"],
+    description: "Лёгкие и удобные кроссовки для бега.",
+    sizes: ["M", "L", "XL"],
+    colors: ["white", "black", "red"],
+    promo: "Бесплатная доставка",
+    availability: "out_of_stock",
+    reviews: [{ user: "Пётр", rating: 3, text: "Неплохие, но не очень удобные." }]
+  }
+];
 
-  <script>
-    // Sample products data with availability
-    const products = [
-      {
-        id: 1,
-        name: "Футболка классическая",
-        price: 999,
-        originalPrice: 1299,
-        category: "clothing",
-        brand: "BrandA",
-        rating: 4,
-        images: ["https://via.placeholder.com/300?text=Футболка+1", "https://via.placeholder.com/300?text=Футболка+2"],
-        description: "Комфортная хлопковая футболка на каждый день.",
-        sizes: ["S", "M", "L", "XL"],
-        colors: ["black", "white", "blue"],
-        discount: 23,
-        promo: "Хит продаж",
-        availability: "in_stock",
-        reviews: [
-          { user: "Иван", rating: 5, text: "Отличная футболка!" },
-          { user: "Анна", rating: 4, text: "Хорошее качество, но цвет немного не тот." }
-        ]
-      },
-      {
-        id: 2,
-        name: "Джинсы Slim Fit",
-        price: 2999,
-        originalPrice: 3999,
-        category: "clothing",
-        brand: "BrandB",
-        rating: 5,
-        images: ["https://via.placeholder.com/300?text=Джинсы+1", "https://via.placeholder.com/300?text=Джинсы+2"],
-        description: "Стильные джинсы slim fit из плотного денима.",
-        sizes: ["S", "M", "L"],
-        colors: ["black", "blue"],
-        discount: 25,
-        promo: "Новинка",
-        availability: "in_stock",
-        reviews: []
-      },
-      {
-        id: 3,
-        name: "Кроссовки беговые",
-        price: 3499,
-        category: "shoes",
-        brand: "BrandC",
-        rating: 4,
-        images: ["https://via.placeholder.com/300?text=Кроссовки+1", "https://via.placeholder.com/300?text=Кроссовки+2"],
-        description: "Лёгкие и удобные кроссовки для бега.",
-        sizes: ["M", "L", "XL"],
-        colors: ["white", "black", "red"],
-        promo: "Бесплатная доставка",
-        availability: "out_of_stock",
-        reviews: [{ user: "Пётр", rating: 3, text: "Неплохие, но не очень удобные." }]
-      }
-    ];
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+let compareList = JSON.parse(localStorage.getItem('compare')) || [];
+let selectedProduct = null;
+let currentPage = 1;
+const productsPerPage = 10;
+let language = 'ru';
+let currency = 'rub';
+let darkMode = false;
+let verificationCode = '';
+let userEmail = '';
+let isLoggedIn = false;
 
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
-    let compareList = JSON.parse(localStorage.getItem('compare')) || [];
-    let selectedProduct = null;
-    let currentPage = 1;
-    const productsPerPage = 10;
-    let language = 'ru';
-    let currency = 'rub';
-    let darkMode = false;
-    let verificationCode = '';
-    let userEmail = '';
-    let isLoggedIn = false;
+// DOM Elements
+const productsContainer = document.getElementById('products');
+const searchInput = document.getElementById('search');
+const mobileSearchInput = document.getElementById('mobile-search');
+const searchSuggestions = document.getElementById('search-suggestions');
+const mobileSearchSuggestions = document.getElementById('mobile-search-suggestions');
+const sortSelect = document.getElementById('sort');
+const minPriceInput = document.getElementById('min-price');
+const maxPriceInput = document.getElementById('max-price');
+const brandFilter = document.getElementById('brand-filter');
+const sizeFilter = document.getElementById('size-filter');
+const colorFilter = document.getElementById('color-filter');
+const availabilityFilter = document.getElementById('availability-filter');
+const ratingFilter = document.getElementById('rating-filter');
+const cartModal = document.getElementById('cart-modal');
+const cartItemsContainer = document.getElementById('cart-items');
+const cartTotal = document.getElementById('cart-total');
+const cartCount = document.getElementById('cart-count');
+const cartToggle = document.getElementById('cart-toggle');
+const closeCart = document.getElementById('close-cart');
+const checkout = document.getElementById('checkout');
+const favoritesModal = document.getElementById('favorites-modal');
+const favoritesItemsContainer = document.getElementById('favorites-items');
+const favoritesToggle = document.getElementById('favorites-toggle');
+const favoritesCount = document.getElementById('favorites-count');
+const closeFavorites = document.getElementById('close-favorites');
+const loginModal = document.getElementById('login-modal');
+const loginToggle = document.getElementById('login-toggle');
+const loginEmail = document.getElementById('login-email');
+const sendCode = document.getElementById('send-code');
+const loginCodeSection = document.getElementById('login-code-section');
+const verificationCodeInput = document.getElementById('verification-code');
+const verifyCode = document.getElementById('verify-code');
+const closeLogin = document.getElementById('close-login');
+const accountModal = document.getElementById('account-modal');
+const closeAccount = document.getElementById('close-account');
+const logout = document.getElementById('logout');
+const sidebar = document.getElementById('sidebar');
+const closeSidebar = document.getElementById('close-sidebar');
+const menuToggle = document.getElementById('menu-toggle');
+const categories = document.querySelectorAll('.category');
+const productModal = document.getElementById('product-modal');
+const productImages = document.getElementById('product-images');
+const productName = document.getElementById('product-name');
+const productPrice = document.getElementById('product-price');
+const productRating = document.getElementById('product-rating');
+const productDescription = document.getElementById('product-description');
+const productSize = document.getElementById('product-size');
+const productColor = document.getElementById('product-color');
+const addToCartModal = document.getElementById('add-to-cart-modal');
+const toggleFavorite = document.getElementById('toggle-favorite');
+const shareProduct = document.getElementById('share-product');
+const compareProduct = document.getElementById('compare-product');
+const closeProduct = document.getElementById('close-product');
+const prevImage = document.getElementById('prev-image');
+const nextImage = document.getElementById('next-image');
+const paginationContainer = document.getElementById('pagination');
+const quickViewModal = document.getElementById('quick-view-modal');
+const quickViewName = document.getElementById('quick-view-name');
+const quickViewImage = document.getElementById('quick-view-image');
+const quickViewPrice = document.getElementById('quick-view-price');
+const quickViewDetails = document.getElementById('quick-view-details');
+const closeQuickView = document.getElementById('close-quick-view');
+const recommendedProducts = document.getElementById('recommended-products');
+const compareModal = document.getElementById('compare-modal');
+const compareProducts = document.getElementById('compare-products');
+const closeCompare = document.getElementById('close-compare');
+const compareToggle = document.getElementById('compare-toggle');
+const compareCount = document.getElementById('compare-count');
+const trackOrderModal = document.getElementById('track-order-modal');
+const orderStatus = document.getElementById('order-status');
+const closeTrackOrder = document.getElementById('close-track-order');
+const notification = document.getElementById('notification');
+const languageSelect = document.getElementById('language');
+const currencySelect = document.getElementById('currency');
+const darkModeToggle = document.getElementById('dark-mode-toggle');
+const reviewsContainer = document.getElementById('reviews');
+const reviewText = document.getElementById('review-text');
+const reviewRating = document.getElementById('review-rating');
+const submitReview = document.getElementById('submit-review');
+const profileName = document.getElementById('profile-name');
+const profileEmail = document.getElementById('profile-email');
+const profilePhone = document.getElementById('profile-phone');
+const editProfile = document.getElementById('edit-profile');
+const editProfileForm = document.getElementById('edit-profile-form');
+const editName = document.getElementById('edit-name');
+const editEmail = document.getElementById('edit-email');
+const editPhone = document.getElementById('edit-phone');
+const saveProfile = document.getElementById('save-profile');
+const cancelEdit = document.getElementById('cancel-edit');
+const chatbotToggle = document.getElementById('chatbot-toggle');
+const chatbotModal = document.getElementById('chatbot-modal');
+const chatbotMessages = document.getElementById('chatbot-messages');
+const chatbotInput = document.getElementById('chatbot-input');
+const chatbotSend = document.getElementById('chatbot-send');
 
-    // DOM Elements
-    const productsContainer = document.getElementById('products');
-    const searchInput = document.getElementById('search');
-    const mobileSearchInput = document.getElementById('mobile-search');
-    const searchSuggestions = document.getElementById('search-suggestions');
-    const mobileSearchSuggestions = document.getElementById('mobile-search-suggestions');
-    const sortSelect = document.getElementById('sort');
-    const minPriceInput = document.getElementById('min-price');
-    const maxPriceInput = document.getElementById('max-price');
-    const brandFilter = document.getElementById('brand-filter');
-    const sizeFilter = document.getElementById('size-filter');
-    const colorFilter = document.getElementById('color-filter');
-    const availabilityFilter = document.getElementById('availability-filter');
-    const ratingFilter = document.getElementById('rating-filter');
-    const cartModal = document.getElementById('cart-modal');
-    const cartItemsContainer = document.getElementById('cart-items');
-    const cartTotal = document.getElementById('cart-total');
-    const cartCount = document.getElementById('cart-count');
-    const cartToggle = document.getElementById('cart-toggle');
-    const closeCart = document.getElementById('close-cart');
-    const checkout = document.getElementById('checkout');
-    const favoritesModal = document.getElementById('favorites-modal');
-    const favoritesItemsContainer = document.getElementById('favorites-items');
-    const favoritesToggle = document.getElementById('favorites-toggle');
-    const favoritesCount = document.getElementById('favorites-count');
-    const closeFavorites = document.getElementById('close-favorites');
-    const loginModal = document.getElementById('login-modal');
-    const loginToggle = document.getElementById('login-toggle');
-    const loginEmail = document.getElementById('login-email');
-    const sendCode = document.getElementById('send-code');
-    const loginCodeSection = document.getElementById('login-code-section');
-    const verificationCodeInput = document.getElementById('verification-code');
-    const verifyCode = document.getElementById('verify-code');
-    const closeLogin = document.getElementById('close-login');
-    const accountModal = document.getElementById('account-modal');
-    const closeAccount = document.getElementById('close-account');
-    const logout = document.getElementById('logout');
-    const sidebar = document.getElementById('sidebar');
-    const closeSidebar = document.getElementById('close-sidebar');
-    const menuToggle = document.getElementById('menu-toggle');
-    const categories = document.querySelectorAll('.category');
-    const productModal = document.getElementById('product-modal');
-    const productImages = document.getElementById('product-images');
-    const productName = document.getElementById('product-name');
-    const productPrice = document.getElementById('product-price');
-    const productRating = document.getElementById('product-rating');
-    const productDescription = document.getElementById('product-description');
-    const productSize = document.getElementById('product-size');
-    const productColor = document.getElementById('product-color');
-    const addToCartModal = document.getElementById('add-to-cart-modal');
-    const toggleFavorite = document.getElementById('toggle-favorite');
-    const shareProduct = document.getElementById('share-product');
-    const compareProduct = document.getElementById('compare-product');
-    const closeProduct = document.getElementById('close-product');
-    const prevImage = document.getElementById('prev-image');
-    const nextImage = document.getElementById('next-image');
-    const paginationContainer = document.getElementById('pagination');
-    const quickViewModal = document.getElementById('quick-view-modal');
-    const quickViewName = document.getElementById('quick-view-name');
-    const quickViewImage = document.getElementById('quick-view-image');
-    const quickViewPrice = document.getElementById('quick-view-price');
-    const quickViewDetails = document.getElementById('quick-view-details');
-    const closeQuickView = document.getElementById('close-quick-view');
-    const recommendedProducts = document.getElementById('recommended-products');
-    const compareModal = document.getElementById('compare-modal');
-    const compareProducts = document.getElementById('compare-products');
-    const closeCompare = document.getElementById('close-compare');
-    const compareToggle = document.getElementById('compare-toggle');
-    const compareCount = document.getElementById('compare-count');
-    const trackOrderModal = document.getElementById('track-order-modal');
-    const orderStatus = document.getElementById('order-status');
-    const closeTrackOrder = document.getElementById('close-track-order');
-    const notification = document.getElementById('notification');
-    const languageSelect = document.getElementById('language');
-    const currencySelect = document.getElementById('currency');
-    const darkModeToggle = document.getElementById('dark-mode-toggle');
-    const reviewsContainer = document.getElementById('reviews');
-    const reviewText = document.getElementById('review-text');
-    const reviewRating = document.getElementById('review-rating');
-    const submitReview = document.getElementById('submit-review');
-    const profileName = document.getElementById('profile-name');
-    const profileEmail = document.getElementById('profile-email');
-    const profilePhone = document.getElementById('profile-phone');
-    const editProfile = document.getElementById('edit-profile');
-    const editProfileForm = document.getElementById('edit-profile-form');
-    const editName = document.getElementById('edit-name');
-    const editEmail = document.getElementById('edit-email');
-    const editPhone = document.getElementById('edit-phone');
-    const saveProfile = document.getElementById('save-profile');
-    const cancelEdit = document.getElementById('cancel-edit');
-    const chatbotToggle = document.getElementById('chatbot-toggle');
-    const chatbotModal = document.getElementById('chatbot-modal');
-    const chatbotMessages = document.getElementById('chatbot-messages');
-    const chatbotInput = document.getElementById('chatbot-input');
-    const chatbotSend = document.getElementById('chatbot-send');
+// Show notification
+function showNotification(message) {
+  notification.textContent = message;
+  notification.style.display = 'block';
+  setTimeout(() => notification.style.display = 'none', 3000);
+}
 
-    // Show notification
-    function showNotification(message) {
-      notification.textContent = message;
-      notification.style.display = 'block';
-      setTimeout(() => notification.style.display = 'none', 3000);
-    }
+// Generate random verification code
+function generateVerificationCode() {
+  return Math.floor(100000 + Math.random() * 900000).toString();
+}
 
-    // Generate random verification code
-    function generateVerificationCode() {
-      return Math.floor(100000 + Math.random() * 900000).toString();
-    }
+// Simulate sending email with verification code
+function sendVerificationCode(email) {
+  verificationCode = generateVerificationCode();
+  userEmail = email;
+  showNotification(`Код подтверждения отправлен на ${email} (имитация: ${verificationCode})`);
+  return true;
+}
 
-    // Simulate sending email with verification code
-    function sendVerificationCode(email) {
-      verificationCode = generateVerificationCode();
-      userEmail = email;
-      showNotification(`Код подтверждения отправлен на ${email} (имитация: ${verificationCode})`);
-      return true;
-    </script>
-    <script>
-    // Verify entered code
-    function verifyEnteredCode(code) {
-      return code === verificationCode;
-    }
+// Verify entered code
+function verifyEnteredCode(code) {
+  return code === verificationCode;
+}
 
-    // Login user
-    function loginUser(email) {
-      isLoggedIn = true;
-      profileEmail.textContent = email;
-      loginModal.classList.add('hidden');
-      accountModal.classList.remove('hidden');
-      showNotification('Вход выполнен успешно!');
-    }
+// Login user
+function loginUser(email) {
+  isLoggedIn = true;
+  profileEmail.textContent = email;
+  loginModal.classList.add('hidden');
+  accountModal.classList.remove('hidden');
+  showNotification('Вход выполнен успешно!');
+}
 
-    // Logout user
-    function logoutUser() {
-      isLoggedIn = false;
-      verificationCode = '';
-      userEmail = '';
-      accountModal.classList.add('hidden');
-      showNotification('Вы вышли из системы');
-    }
+// Logout user
+function logoutUser() {
+  isLoggedIn = false;
+  verificationCode = '';
+  userEmail = '';
+  accountModal.classList.add('hidden');
+  showNotification('Вы вышли из системы');
+}
 
-    // Render products
-    function renderProducts(filteredProducts = products) {
-      if (!productsContainer) return;
-      productsContainer.innerHTML = '';
-      const start = (currentPage - 1) * productsPerPage;
-      const end = start + productsPerPage;
-      const paginatedProducts = filteredProducts.slice(start, end);
+// Render products
+function renderProducts(filteredProducts = products) {
+  if (!productsContainer) return;
+  productsContainer.innerHTML = '';
+  const start = (currentPage - 1) * productsPerPage;
+  const end = start + productsPerPage;
+  const paginatedProducts = filteredProducts.slice(start, end);
 
-      paginatedProducts.forEach(product => {
-        const isFavorite = favorites.some(fav => fav.id === product.id);
-        const discountTag = product.discount ? `<span class="discount">-${product.discount}%</span>` : '';
-        const price = currency === 'usd' ? (product.price / 75).toFixed(2) : product.price;
-        const originalPrice = product.originalPrice ? (currency === 'usd' ? (product.originalPrice / 75).toFixed(2) : product.originalPrice) : null;
-        const priceDisplay = originalPrice ? `<span class="line-through text-gray-500">${originalPrice} ${currency === 'usd' ? '$' : '₽'}</span> <span class="text-red-500 font-semibold">${price} ${currency === 'usd' ? '$' : '₽'}</span>` : `<span class="font-semibold">${price} ${currency === 'usd' ? '$' : '₽'}</span>`;
-        const promoTag = product.promo ? `<span class="promo-tag">${product.promo}</span>` : '';
-        const availabilityText = product.availability === 'in_stock' ? (language === 'ru' ? 'В наличии' : 'In stock') : (language === 'ru' ? 'Нет в наличии' : 'Out of stock');
-        const productCard = `
-          <div class="bg-white rounded-lg shadow-md overflow-hidden product-card relative">
-            ${discountTag}
-            <img src="${product.images[0]}" alt="${product.name}" class="w-full h-48 object-cover">
-            <button onclick="toggleFavoriteFromList(${product.id}, event)" class="absolute top-2 right-2 text-2xl ${isFavorite ? 'text-red-500' : 'text-gray-300'} hover:text-red-500 transition-colors">❤</button>
-            <div class="p-4">
-              <h3 class="text-md font-semibold wb-text-purple truncate">${product.name}</h3>
-              <p class="text-gray-600 mt-1">${priceDisplay}</p>
-              <p class="text-yellow-500 text-sm mt-1">${'★'.repeat(product.rating)}${'☆'.repeat(5 - product.rating)}</p>
-              <p class="text-sm ${product.availability === 'in_stock' ? 'text-green-500' : 'text-red-500'}">${availabilityText}</p>
-              ${promoTag}
-              <button onclick="openQuickView(${product.id})" class="quick-view wb-pink text-white px-4 py-1 rounded-full hover:bg-pink-700 text-sm mt-2">${language === 'ru' ? 'Быстрый просмотр' : 'Quick View'}</button>
-            </div>
-          </div>
-        `;
-        productsContainer.innerHTML += productCard;
-      });
-
-      renderPagination(filteredProducts);
-    }
-
-    // Render pagination
-    function renderPagination(filteredProducts) {
-      if (!paginationContainer) return;
-      paginationContainer.innerHTML = '';
-      const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
-
-      for (let i = 1; i <= totalPages; i++) {
-        const button = `<button class="px-4 py-2 rounded-lg border border-gray-300 ${i === currentPage ? 'wb-pink text-white' : 'bg-white hover:bg-gray-100'}" onclick="changePage(${i})">${i}</button>`;
-        paginationContainer.innerHTML += button;
-      }
-    }
-
-    // Change page
-    window.changePage = function(page) {
-      currentPage = page;
-      applyFilters();
-    };
-
-    // Open quick view
-    function openQuickView(productId) {
-      if (!quickViewModal) return;
-      const product = products.find(p => p.id === productId);
-      quickViewName.textContent = product.name;
-      quickViewImage.src = product.images[0];
-      const price = currency === 'usd' ? (product.price / 75).toFixed(2) : product.price;
-      const originalPrice = product.originalPrice ? (currency === 'usd' ? (product.originalPrice / 75).toFixed(2) : product.originalPrice) : null;
-      quickViewPrice.innerHTML = originalPrice ? `<span class="line-through text-gray-500">${originalPrice} ${currency === 'usd' ? '$' : '₽'}</span> <span class="text-red-500">${price} ${currency === 'usd' ? '$' : '₽'}</span>` : `${price} ${currency === 'usd' ? '$' : '₽'}`;
-      quickViewModal.classList.remove('hidden');
-      quickViewDetails.onclick = () => {
-        quickViewModal.classList.add('hidden');
-        openProductModal(productId);
-      };
-    }
-
-    // Open product modal
-    function openProductModal(productId) {
-      if (!productModal) return;
-      selectedProduct = products.find(p => p.id === productId);
-      productImages.innerHTML = selectedProduct.images.map(img => `<img src="${img}" alt="${selectedProduct.name}" class="w-full h-64 object-cover rounded-lg">`).join('');
-      productName.textContent = selectedProduct.name;
-      const price = currency === 'usd' ? (selectedProduct.price / 75).toFixed(2) : selectedProduct.price;
-      const originalPrice = selectedProduct.originalPrice ? (currency === 'usd' ? (selectedProduct.originalPrice / 75).toFixed(2) : selectedProduct.originalPrice) : null;
-      productPrice.innerHTML = originalPrice ? `<span class="line-through text-gray-500">${originalPrice} ${currency === 'usd' ? '$' : '₽'}</span> <span class="text-red-500">${price} ${currency === 'usd' ? '$' : '₽'}</span>` : `${price} ${currency === 'usd' ? '$' : '₽'}`;
-      productRating.textContent = '★'.repeat(selectedProduct.rating) + '☆'.repeat(5 - selectedProduct.rating);
-      productDescription.textContent = selectedProduct.description;
-      productSize.innerHTML = selectedProduct.sizes.map(size => `<option value="${size}">${size}</option>`).join('');
-      productColor.innerHTML = selectedProduct.colors.map(color => `<option value="${color}">${color}</option>`).join('');
-      toggleFavorite.innerHTML = favorites.some(fav => fav.id === productId) ? `<svg class="w-5 h-5 mr-2 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>${language === 'ru' ? 'Убрать из избранного' : 'Remove from favorites'}` : `<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>${language === 'ru' ? 'В избранное' : 'Add to favorites'}`;
-      compareProduct.innerHTML = compareList.some(comp => comp.id === productId) ? `<svg class="w-5 h-5 mr-2 text-blue-500" fill="currentColor" viewBox="0 0 24 24"><path d="M3 4h18M3 8h18M3 12h18M3 16h18M3 20h18"></path></svg>${language === 'ru' ? 'Убрать из сравнения' : 'Remove from compare'}` : `<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h18M3 8h18M3 12h18M3 16h18M3 20h18"></path></svg>${language === 'ru' ? 'Сравнить' : 'Compare'}`;
-      productModal.classList.remove('hidden');
-
-      // Render reviews
-      reviewsContainer.innerHTML = selectedProduct.reviews.map(review => `
-        <div class="border-b pb-4">
-          <p class="font-semibold">${review.user}</p>
-          <p class="text-yellow-500">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</p>
-          <p>${review.text}</p>
+  paginatedProducts.forEach(product => {
+    const isFavorite = favorites.some(fav => fav.id === product.id);
+    const discountTag = product.discount ? `<span class="discount">-${product.discount}%</span>` : '';
+    const price = currency === 'usd' ? (product.price / 75).toFixed(2) : product.price;
+    const originalPrice = product.originalPrice ? (currency === 'usd' ? (product.originalPrice / 75).toFixed(2) : product.originalPrice) : null;
+    const priceDisplay = originalPrice ? `<span class="line-through text-gray-500">${originalPrice} ${currency === 'usd' ? '$' : '₽'}</span> <span class="text-red-500 font-semibold">${price} ${currency === 'usd' ? '$' : '₽'}</span>` : `<span class="font-semibold">${price} ${currency === 'usd' ? '$' : '₽'}</span>`;
+    const promoTag = product.promo ? `<span class="promo-tag">${product.promo}</span>` : '';
+    const availabilityText = product.availability === 'in_stock' ? (language === 'ru' ? 'В наличии' : 'In stock') : (language === 'ru' ? 'Нет в наличии' : 'Out of stock');
+    const productCard = `
+      <div class="bg-white rounded-lg shadow-md overflow-hidden product-card relative">
+        ${discountTag}
+        <img src="${product.images[0]}" alt="${product.name}" class="w-full h-48 object-cover">
+        <button onclick="toggleFavoriteFromList(${product.id}, event)" class="absolute top-2 right-2 text-2xl ${isFavorite ? 'text-red-500' : 'text-gray-300'} hover:text-red-500 transition-colors">❤</button>
+        <div class="p-4">
+          <h3 class="text-md font-semibold wb-text-purple truncate">${product.name}</h3>
+          <p class="text-gray-600 mt-1">${priceDisplay}</p>
+          <p class="text-yellow-500 text-sm mt-1">${'★'.repeat(product.rating)}${'☆'.repeat(5 - product.rating)}</p>
+          <p class="text-sm ${product.availability === 'in_stock' ? 'text-green-500' : 'text-red-500'}">${availabilityText}</p>
+          ${promoTag}
+          <button onclick="openQuickView(${product.id})" class="quick-view wb-pink text-white px-4 py-1 rounded-full hover:bg-pink-700 text-sm mt-2">${language === 'ru' ? 'Быстрый просмотр' : 'Quick View'}</button>
         </div>
-      `).join('');
+      </div>
+    `;
+    productsContainer.innerHTML += productCard;
+  });
 
-      // Render recommended products
-      const recommended = products.filter(p => p.id !== productId && p.category === selectedProduct.category).slice(0, 2);
-      recommendedProducts.innerHTML = recommended.map(product => {
-        const recPrice = currency === 'usd' ? (product.price / 75).toFixed(2) : product.price;
-        return `
-          <div class="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer" onclick="openProductModal(${product.id})">
-            <img src="${product.images[0]}" alt="${product.name}" class="w-full h-24 object-cover">
-            <div class="p-2">
-              <h4 class="text-sm font-semibold wb-text-purple truncate">${product.name}</h4>
-              <p class="text-gray-600 text-sm">${recPrice} ${currency === 'usd' ? '$' : '₽'}</p>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
+  renderPagination(filteredProducts);
+}
 
-    // Submit review
-    submitReview.addEventListener('click', () => {
-      if (!selectedProduct || !reviewText.value.trim()) return;
-      const newReview = {
-        user: "Текущий пользователь",
-        rating: parseInt(reviewRating.value),
-        text: reviewText.value.trim()
-      };
-      selectedProduct.reviews.push(newReview);
-      reviewText.value = '';
-      openProductModal(selectedProduct.id); // Refresh modal with new review
-      showNotification(language === 'ru' ? 'Отзыв добавлен!' : 'Review added!');
-    });
+// Render pagination
+function renderPagination(filteredProducts) {
+  if (!paginationContainer) return;
+  paginationContainer.innerHTML = '';
+  const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
 
-    // Carousel navigation
-    let currentImageIndex = 0;
-    function updateCarousel() {
-      if (productImages) {
-        productImages.scrollTo({ left: currentImageIndex * productImages.offsetWidth, behavior: 'smooth' });
-      }
-    }
+  for (let i = 1; i <= totalPages; i++) {
+    const button = `<button class="px-4 py-2 rounded-lg border border-gray-300 ${i === currentPage ? 'wb-pink text-white' : 'bg-white hover:bg-gray-100'}" onclick="changePage(${i})">${i}</button>`;
+    paginationContainer.innerHTML += button;
+  }
+}
 
-    prevImage.addEventListener('click', () => {
-      if (currentImageIndex > 0) {
-        currentImageIndex--;
-        updateCarousel();
-      }
-    });
+// Change page
+window.changePage = function(page) {
+  currentPage = page;
+  applyFilters();
+};
 
-    nextImage.addEventListener('click', () => {
-      if (selectedProduct && currentImageIndex < selectedProduct.images.length - 1) {
-        currentImageIndex++;
-        updateCarousel();
-      }
-    });
+// Open quick view
+function openQuickView(productId) {
+  if (!quickViewModal) return;
+  const product = products.find(p => p.id === productId);
+  quickViewName.textContent = product.name;
+  quickViewImage.src = product.images[0];
+  const price = currency === 'usd' ? (product.price / 75).toFixed(2) : product.price;
+  const originalPrice = product.originalPrice ? (currency === 'usd' ? (product.originalPrice / 75).toFixed(2) : product.originalPrice) : null;
+  quickViewPrice.innerHTML = originalPrice ? `<span class="line-through text-gray-500">${originalPrice} ${currency === 'usd' ? '$' : '₽'}</span> <span class="text-red-500">${price} ${currency === 'usd' ? '$' : '₽'}</span>` : `${price} ${currency === 'usd' ? '$' : '₽'}`;
+  quickViewModal.classList.remove('hidden');
+  quickViewDetails.onclick = () => {
+    quickViewModal.classList.add('hidden');
+    openProductModal(productId);
+  };
+}
 
-    // Add to cart
-    function addToCart(productId) {
-      const product = products.find(p => p.id === productId);
-      const size = productSize.value;
-      const color = productColor.value;
-      const cartItem = cart.find(item => item.id === productId && item.size === size && item.color === color);
+// Open product modal
+function openProductModal(productId) {
+  if (!productModal) return;
+  selectedProduct = products.find(p => p.id === productId);
+  productImages.innerHTML = selectedProduct.images.map(img => `<img src="${img}" alt="${selectedProduct.name}" class="w-full h-64 object-cover rounded-lg">`).join('');
+  productName.textContent = selectedProduct.name;
+  const price = currency === 'usd' ? (selectedProduct.price / 75).toFixed(2) : selectedProduct.price;
+  const originalPrice = selectedProduct.originalPrice ? (currency === 'usd' ? (selectedProduct.originalPrice / 75).toFixed(2) : selectedProduct.originalPrice) : null;
+  productPrice.innerHTML = originalPrice ? `<span class="line-through text-gray-500">${originalPrice} ${currency === 'usd' ? '$' : '₽'}</span> <span class="text-red-500">${price} ${currency === 'usd' ? '$' : '₽'}</span>` : `${price} ${currency === 'usd' ? '$' : '₽'}`;
+  productRating.textContent = '★'.repeat(selectedProduct.rating) + '☆'.repeat(5 - selectedProduct.rating);
+  productDescription.textContent = selectedProduct.description;
+  productSize.innerHTML = selectedProduct.sizes.map(size => `<option value="${size}">${size}</option>`).join('');
+  productColor.innerHTML = selectedProduct.colors.map(color => `<option value="${color}">${color}</option>`).join('');
+  toggleFavorite.innerHTML = favorites.some(fav => fav.id === productId) ? `<svg class="w-5 h-5 mr-2 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>${language === 'ru' ? 'Убрать из избранного' : 'Remove from favorites'}` : `<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>${language === 'ru' ? 'В избранное' : 'Add to favorites'}`;
+  compareProduct.innerHTML = compareList.some(comp => comp.id === productId) ? `<svg class="w-5 h-5 mr-2 text-blue-500" fill="currentColor" viewBox="0 0 24 24"><path d="M3 4h18M3 8h18M3 12h18M3 16h18M3 20h18"></path></svg>${language === 'ru' ? 'Убрать из сравнения' : 'Remove from compare'}` : `<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4h18M3 8h18M3 12h18M3 16h18M3 20h18"></path></svg>${language === 'ru' ? 'Сравнить' : 'Compare'}`;
+  productModal.classList.remove('hidden');
 
-      if (cartItem) {
-        cartItem.quantity++;
-      } else {
-        cart.push({ ...product, quantity: 1, size, color });
-      }
+  // Render reviews
+  reviewsContainer.innerHTML = selectedProduct.reviews.map(review => `
+    <div class="border-b pb-4">
+      <p class="font-semibold">${review.user}</p>
+      <p class="text-yellow-500">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</p>
+      <p>${review.text}</p>
+    </div>
+  `).join('');
 
-      localStorage.setItem('cart', JSON.stringify(cart));
-      updateCart();
-      showNotification(language === 'ru' ? 'Товар добавлен в корзину!' : 'Item added to cart!');
-    }
+  // Render recommended products
+  const recommended = products.filter(p => p.id !== productId && p.category === selectedProduct.category).slice(0, 2);
+  recommendedProducts.innerHTML = recommended.map(product => {
+    const recPrice = currency === 'usd' ? (product.price / 75).toFixed(2) : product.price;
+    return `
+      <div class="bg-white rounded-lg shadow-md overflow-hidden cursor-pointer" onclick="openProductModal(${product.id})">
+        <img src="${product.images[0]}" alt="${product.name}" class="w-full h-24 object-cover">
+        <div class="p-2">
+          <h4 class="text-sm font-semibold wb-text-purple truncate">${product.name}</h4>
+          <p class="text-gray-600 text-sm">${recPrice} ${currency === 'usd' ? '$' : '₽'}</p>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
 
-    // Update cart quantity
-    window.updateCartQuantity = function(productId, size, color, quantity) {
-      const cartItem = cart.find(item => item.id === productId && item.size === size && item.color === color);
-      if (cartItem) {
-        cartItem.quantity = quantity;
-        if (cartItem.quantity <= 0) {
-          cart = cart.filter(item => item.id !== productId || item.size !== size || item.color !== color);
-        }
-        localStorage.setItem('cart', JSON.stringify(cart));
-        updateCart();
-      }
-    };
+// Submit review
+submitReview.addEventListener('click', () => {
+  if (!selectedProduct || !reviewText.value.trim()) return;
+  const newReview = {
+    user: "Текущий пользователь",
+    rating: parseInt(reviewRating.value),
+    text: reviewText.value.trim()
+  };
+  selectedProduct.reviews.push(newReview);
+  reviewText.value = '';
+  openProductModal(selectedProduct.id); // Refresh modal with new review
+  showNotification(language === 'ru' ? 'Отзыв добавлен!' : 'Review added!');
+});
 
-    // Remove from cart
-    window.removeFromCart = function(productId, size, color) {
+// Carousel navigation
+let currentImageIndex = 0;
+function updateCarousel() {
+  if (productImages) {
+    productImages.scrollTo({ left: currentImageIndex * productImages.offsetWidth, behavior: 'smooth' });
+  }
+}
+
+prevImage.addEventListener('click', () => {
+  if (currentImageIndex > 0) {
+    currentImageIndex--;
+    updateCarousel();
+  }
+});
+
+nextImage.addEventListener('click', () => {
+  if (selectedProduct && currentImageIndex < selectedProduct.images.length - 1) {
+    currentImageIndex++;
+    updateCarousel();
+  }
+});
+
+// Add to cart
+function addToCart(productId) {
+  const product = products.find(p => p.id === productId);
+  const size = productSize.value;
+  const color = productColor.value;
+  const cartItem = cart.find(item => item.id === productId && item.size === size && item.color === color);
+
+  if (cartItem) {
+    cartItem.quantity++;
+  } else {
+    cart.push({ ...product, quantity: 1, size, color });
+  }
+
+  localStorage.setItem('cart', JSON.stringify(cart));
+  updateCart();
+  showNotification(language === 'ru' ? 'Товар добавлен в корзину!' : 'Item added to cart!');
+}
+
+// Update cart quantity
+window.updateCartQuantity = function(productId, size, color, quantity) {
+  const cartItem = cart.find(item => item.id === productId && item.size === size && item.color === color);
+  if (cartItem) {
+    cartItem.quantity = quantity;
+    if (cartItem.quantity <= 0) {
       cart = cart.filter(item => item.id !== productId || item.size !== size || item.color !== color);
-      localStorage.setItem('cart', JSON.stringify(cart));
-      updateCart();
-      showNotification(language === 'ru' ? 'Товар удалён из корзины' : 'Item removed from cart');
-    };
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCart();
+  }
+};
 
-    // Update cart UI
-    function updateCart() {
-      if (!cartItemsContainer || !cartTotal || !cartCount) return;
-      cartItemsContainer.innerHTML = '';
-      let total = 0;
+// Remove from cart
+window.removeFromCart = function(productId, size, color) {
+  cart = cart.filter(item => item.id !== productId || item.size !== size || item.color !== color);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  updateCart();
+  showNotification(language === 'ru' ? 'Товар удалён из корзины' : 'Item removed from cart');
+};
 
-      cart.forEach(item => {
-        const itemPrice = currency === 'usd' ? (item.price / 75).toFixed(2) : item.price;
-        total += itemPrice * item.quantity;
-        const cartItem = `
-          <div class="flex justify-between items-center mb-4 border-b pb-4">
-            <div class="flex items-center">
-              <img src="${item.images[0]}" alt="${item.name}" class="w-16 h-16 object-cover rounded-lg mr-4">
-              <div>
-                <p class="wb-text-purple font-medium">${item.name}</p>
-                <p class="text-gray-600 text-sm">${item.size}, ${item.color}</p>
-                <p class="text-gray-700">${itemPrice * item.quantity} ${currency === 'usd' ? '$' : '₽'}</p>
-              </div>
-            </div>
-            <div class="flex items-center space-x-2">
-              <button onclick="updateCartQuantity(${item.id}, '${item.size}', '${item.color}', ${item.quantity - 1})" class="bg-gray-200 px-2 py-1 rounded-full hover:bg-gray-300">-</button>
-              <span class="font-medium">${item.quantity}</span>
-              <button onclick="updateCartQuantity(${item.id}, '${item.size}', '${item.color}', ${item.quantity + 1})" class="bg-gray-200 px-2 py-1 rounded-full hover:bg-gray-300">+</button>
-              <button onclick="removeFromCart(${item.id}, '${item.size}', '${item.color}')" class="text-red-500 hover:underline text-sm">${language === 'ru' ? 'Удалить' : 'Remove'}</button>
-            </div>
+// Update cart UI
+function updateCart() {
+  if (!cartItemsContainer || !cartTotal || !cartCount) return;
+  cartItemsContainer.innerHTML = '';
+  let total = 0;
+
+  cart.forEach(item => {
+    const itemPrice = currency === 'usd' ? (item.price / 75).toFixed(2) : item.price;
+    total += itemPrice * item.quantity;
+    const cartItem = `
+      <div class="flex justify-between items-center mb-4 border-b pb-4">
+        <div class="flex items-center">
+          <img src="${item.images[0]}" alt="${item.name}" class="w-16 h-16 object-cover rounded-lg mr-4">
+          <div>
+            <p class="wb-text-purple font-medium">${item.name}</p>
+            <p class="text-gray-600 text-sm">${item.size}, ${item.color}</p>
+            <p class="text-gray-700">${itemPrice * item.quantity} ${currency === 'usd' ? '$' : '₽'}</p>
           </div>
-        `;
-        cartItemsContainer.innerHTML += cartItem;
-      });
+        </div>
+        <div class="flex items-center space-x-2">
+          <button onclick="updateCartQuantity(${item.id}, '${item.size}', '${item.color}', ${item.quantity - 1})" class="bg-gray-200 px-2 py-1 rounded-full hover:bg-gray-300">-</button>
+          <span class="font-medium">${item.quantity}</span>
+          <button onclick="updateCartQuantity(${item.id}, '${item.size}', '${item.color}', ${item.quantity + 1})" class="bg-gray-200 px-2 py-1 rounded-full hover:bg-gray-300">+</button>
+          <button onclick="removeFromCart(${item.id}, '${item.size}', '${item.color}')" class="text-red-500 hover:underline text-sm">${language === 'ru' ? 'Удалить' : 'Remove'}</button>
+        </div>
+      </div>
+    `;
+    cartItemsContainer.innerHTML += cartItem;
+  });
 
-      cartTotal.textContent = `${total.toFixed(2)} ${currency === 'usd' ? '$' : '₽'}`;
-      cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
-    }
+  cartTotal.textContent = `${total.toFixed(2)} ${currency === 'usd' ? '$' : '₽'}`;
+  cartCount.textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+}
 
-    // Toggle favorite
-    window.toggleFavoriteFromList = function(productId, event) {
-      event.stopPropagation();
-      const product = products.find(p => p.id === productId);
-      const isFavorite = favorites.some(fav => fav.id === productId);
+// Toggle favorite
+window.toggleFavoriteFromList = function(productId, event) {
+  event.stopPropagation();
+  const product = products.find(p => p.id === productId);
+  const isFavorite = favorites.some(fav => fav.id === productId);
 
-      if (isFavorite) {
-        favorites = favorites.filter(fav => fav.id !== productId);
-        showNotification(language === 'ru' ? 'Удалено из избранного' : 'Removed from favorites');
-      } else {
-        favorites.push(product);
-        showNotification(language === 'ru' ? 'Добавлено в избранное' : 'Added to favorites');
-      }
+  if (isFavorite) {
+    favorites = favorites.filter(fav => fav.id !== productId);
+    showNotification(language === 'ru' ? 'Удалено из избранного' : 'Removed from favorites');
+  } else {
+    favorites.push(product);
+    showNotification(language === 'ru' ? 'Добавлено в избранное' : 'Added to favorites');
+  }
 
-      localStorage.setItem('favorites', JSON.stringify(favorites));
-      updateFavorites();
-      renderProducts(applyFilters(true));
-    };
+  localStorage.setItem('favorites', JSON.stringify(favorites));
+  updateFavorites();
+  renderProducts(applyFilters(true));
+};
 
-    toggleFavorite.addEventListener('click', () => {
-      if (!selectedProduct) return;
-      const isFavorite = favorites.some(fav => fav.id === selectedProduct.id);
-      if (isFavorite) {
-        favorites = favorites.filter(fav => fav.id !== selectedProduct.id);
-        showNotification(language === 'ru' ? 'Удалено из избранного' : 'Removed from favorites');
-      } else {
-        favorites.push(selectedProduct);
-        showNotification(language === 'ru' ? 'Добавлено в избранное' : 'Added to favorites');
-      }
-      localStorage.setItem('favorites', JSON.stringify(favorites));
-      toggleFavorite.innerHTML = isFavorite ? `<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>${language === 'ru' ? 'В избранное' : 'Add to favorites'}` : `<svg class="w-5 h-5 mr-2 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>${language === 'ru' ? 'Убрать из избранного' : 'Remove from favorites'}`;
-      updateFavorites();
-      renderProducts(applyFilters(true));
-    });
+toggleFavorite.addEventListener('click', () => {
+  if (!selectedProduct) return;
+  const isFavorite = favorites.some(fav => fav.id === selectedProduct.id);
+  if (isFavorite) {
+    favorites = favorites.filter(fav => fav.id !== selectedProduct.id);
+    showNotification(language === 'ru' ? 'Удалено из избранного' : 'Removed from favorites');
+  } else {
+    favorites.push(selectedProduct);
+    showNotification(language === 'ru' ? 'Добавлено в избранное' : 'Added to favorites');
+  }
+  localStorage.setItem('favorites', JSON.stringify(favorites));
+  toggleFavorite.innerHTML = isFavorite ? `<svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>${language === 'ru' ? 'В избранное' : 'Add to favorites'}` : `<svg class="w-5 h-5 mr-2 text-red-500" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>${language === 'ru' ? 'Убрать из избранного' : 'Remove from favorites'}`;
+  updateFavorites();
+  renderProducts(applyFilters(true));
+});
 
-    // Update favorites UI
-    function updateFavorites() {
-      if (!favoritesItemsContainer || !favoritesCount) return;
-      favoritesItemsContainer.innerHTML = '';
-      favorites.forEach(item => {
-        const itemPrice = currency === 'usd' ? (item.price / 75).toFixed(2) : item.price;
-        const favoriteItem = `
-          <div class="flex justify-between items-center mb-4 border-b pb-4">
-            <div class="flex items-center">
-              <img src="${item.images[0]}" alt="${item.name}" class="w-16 h-16 object-cover rounded-lg mr-4">
-              <div>
-                <p class="wb-text-purple font-medium">${item.name}</p>
-                <p class="text-gray-700">${itemPrice} ${currency === 'usd' ? '$' : '₽'}</p>
-              </div>
-            </div>
-            <button onclick="toggleFavoriteFromList(${item.id}, event)" class="text-red-500 hover:underline text-sm">${language === 'ru' ? 'Удалить' : 'Remove'}</button>
+// Update favorites UI
+function updateFavorites() {
+  if (!favoritesItemsContainer || !favoritesCount) return;
+  favoritesItemsContainer.innerHTML = '';
+  favorites.forEach(item => {
+    const itemPrice = currency === 'usd' ? (item.price / 75).toFixed(2) : item.price;
+    const favoriteItem = `
+      <div class="flex justify-between items-center mb-4 border-b pb-4">
+        <div class="flex items-center">
+          <img src="${item.images[0]}" alt="${item.name}" class="w-16 h-16 object-cover rounded-lg mr-4">
+          <div>
+            <p class="wb-text-purple font-medium">${item.name}</p>
+            <p class="text-gray-700">${itemPrice} ${currency === 'usd' ? '$' : '₽'}</p>
           </div>
-        `;
-        favoritesItemsContainer.innerHTML += favoriteItem;
-      });
-      favoritesCount.textContent = favorites.length;
-    }
+        </div>
+        <button onclick="toggleFavoriteFromList(${item.id}, event)" class="text-red-500 hover:underline text-sm">${language === 'ru' ? 'Удалить' : 'Remove'}</button>
+      </div>
+    `;
+    favoritesItemsContainer.innerHTML += favoriteItem;
+  });
+  favoritesCount.textContent = favorites.length;
+}
 
-    // Search suggestions
-    function showSuggestions(input, suggestionsContainer) {
-      const query = input.value.toLowerCase();
-      if (query.length < 2) {
-        suggestionsContainer.style.display = 'none';
-        return;
-      }
-      const filtered = products.filter(p => p.name.toLowerCase().includes(query) || p.brand.toLowerCase().includes(query)).slice(0, 5);
-      suggestionsContainer.innerHTML = filtered.map(p => `<div onclick="selectSuggestion('${p.name}')">${p.name} (${p.brand})</div>`).join('');
-      suggestionsContainer.style.display = filtered.length ? 'block' : 'none';
-    }
+// Apply filters
+function applyFilters(returnFiltered = false) {
+  const query = (searchInput.value || mobileSearchInput.value || '').toLowerCase();
+  const selectedCategory = document.querySelector('.category.bg-purple-100')?.dataset.category || 'all';
+  const minPrice = parseFloat(minPriceInput.value) || 0;
+  const maxPrice = parseFloat(maxPriceInput.value) || Infinity;
+  const selectedBrand = brandFilter.value;
+  const selectedSize = sizeFilter.value;
+  const selectedColor = colorFilter.value;
+  const selectedAvailability = availabilityFilter.value;
+  const minRating = parseInt(ratingFilter.value) || 0;
 
-    window.selectSuggestion = function(value) {
-      searchInput.value = value;
-      mobileSearchInput.value = value;
-      searchSuggestions.style.display = 'none';
-      mobileSearchSuggestions.style.display = 'none';
-      applyFilters();
-    };
+  let filteredProducts = products.filter(product => {
+    const matchesSearch = product.name.toLowerCase().includes(query) || product.brand.toLowerCase().includes(query);
+    const matchesCategory = selectedCategory === 'all' || product.category === selectedCategory;
+    const productPrice = currency === 'usd' ? product.price / 75 : product.price;
+    const matchesPrice = productPrice >= minPrice && productPrice <= maxPrice;
+    const matchesBrand = !selectedBrand || product.brand === selectedBrand;
+    const matchesSize = !selectedSize || product.sizes.includes(selectedSize);
+    const matchesColor = !selectedColor || product.colors.includes(selectedColor);
+    const matchesAvailability = !selectedAvailability || product.availability === selectedAvailability;
+    const matchesRating = product.rating >= minRating;
+    return matchesSearch && matchesCategory && matchesPrice && matchesBrand && matchesSize && matchesColor && matchesAvailability && matchesRating;
+  });
 
-    // Share product
-    shareProduct.addEventListener('click', () => {
-      if (!selectedProduct) return;
-      const url = `${window.location.origin}/product/${selectedProduct.id}`;
-      navigator.clipboard.writeText(url);
-      showNotification(language === 'ru' ? 'Ссылка скопирована в буфер обмена!' : 'Link copied to clipboard!');
-    });
+  const sortValue = sortSelect.value;
+  if (sortValue === 'price-asc') {
+    filteredProducts.sort((a, b) => (currency === 'usd' ? a.price / 75 - b.price / 75 : a.price - b.price));
+  } else if (sortValue === 'price-desc') {
+    filteredProducts.sort((a, b) => (currency === 'usd' ? b.price / 75 - a.price / 75 : b.price - a.price));
+  } else if (sortValue === 'rating-desc') {
+    filteredProducts.sort((a, b) => b.rating - a.rating);
+  } else if (sortValue === 'discount-desc') {
+    filteredProducts.sort((a, b) => (b.discount || 0) - (a.discount || 0));
+  }
 
-    // Compare products
-    compareProduct.addEventListener('click', () => {
-      if (!selectedProduct) return;
-      const isCompared = compareList.some(comp => comp.id === selectedProduct.id);
-      if (isCompared) {
-        compareList = compareList.filter(comp => comp.id !== selectedProduct.id);
-        showNotification(language === 'ru' ? 'Удалено из сравнения' : 'Removed from compare');
-      } else if (compareList.length < 3) {
-        compareList.push(selectedProduct);
-        showNotification(language === 'ru' ? 'Добавлено в сравнение' : 'Added to compare');
-      } else {
+  if (returnFiltered) return filteredProducts;
+  renderProducts(filteredProducts);
+}
+
+// Search suggestions
+function showSuggestions(input, suggestionsContainer) {
+  const query = input.value.toLowerCase();
+  if (query.length < 2) {
+    suggestionsContainer.style.display = 'none';
+    return;
+  }
+  const filtered = products.filter(p => p.name.toLowerCase().includes(query) || p.brand.toLowerCase().includes(query)).slice(0, 5);
+  suggestionsContainer.innerHTML = filtered.map(p => `<div onclick="selectSuggestion('${p.name}')">${p.name} (${p.brand})</div>`).join('');
+  suggestionsContainer.style.display = filtered.length ? 'block' : 'none';
+}
+
+window.selectSuggestion = function(value) {
+  searchInput.value = value;
+  mobileSearchInput.value = value;
+  searchSuggestions.style.display = 'none';
+  mobileSearchSuggestions.style.display = 'none';
+  applyFilters();
+};
+
+// Share product
+shareProduct.addEventListener('click', () => {
+  if (!selectedProduct) return;
+  const url = `${window.location.origin}/product/${selectedProduct.id}`;
+  navigator.clipboard.writeText(url);
+  showNotification(language === 'ru' ? 'Ссылка скопирована в буфер обмена!' : 'Link copied to clipboard!');
+});
+
+// Compare products
+compareProduct.addEventListener('click', () => {
+  if (!selectedProduct) return;
+  const isCompared = compareList.some(comp => comp.id === selectedProduct.id);
+  if (isCompared) {
+    compareList = compareList.filter(comp => comp.id !== selectedProduct.id);
+    showNotification(language === 'ru' ? 'Удалено из сравнения' : 'Removed from compare');
+  } else if (compareList.length < 3) {
+    compareList.push(selectedProduct);
+    showNotification(language === 'ru' ? 'Добавлено в сравнение' : 'Removed from compare')
+  } else {
         showNotification(language === 'ru' ? 'Максимум 3 товара для сравнения' : 'Maximum 3 items for comparison');
       }
       localStorage.setItem('compare', JSON.stringify(compareList));
@@ -1328,6 +1352,7 @@
       verificationCodeInput.value = '';
     });
     closeLogin.addEventListener('click', () => loginModal.classList.add('hidden'));
+    closeAccount.addEventListener('click', () => accountModal.classList.add('hidden'));
     addToCartModal.addEventListener('click', () => {
       if (selectedProduct) {
         addToCart(selectedProduct.id);
@@ -1372,3 +1397,4 @@
   </script>
 </body>
 </html>
+  

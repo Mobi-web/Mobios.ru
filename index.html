@@ -148,12 +148,6 @@
       font-size: 20px;
       cursor: pointer;
     }
-    #dropdown-menu {
-      z-index: 10;
-    }
-    #dropdown-menu.hidden {
-      display: none;
-    }
   </style>
 </head>
 <body class="bg-gray-50">
@@ -176,15 +170,36 @@
           <input type="text" id="search" placeholder="Поиск товаров, брендов, категорий..." class="p-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500 w-64 hidden md:block">
           <div id="search-suggestions" class="suggestions"></div>
         </div>
-        <select id="language" class="bg-transparent text-white border-none">
-          <option value="ru">Русский</option>
-          <option value="en">English</option>
-        </select>
-        <select id="currency" class="bg-transparent text-white border-none">
-          <option value="rub">₽ RUB</option>
-          <option value="usd">\\$ USD</option>
-        </select>
-        <button id="dark-mode-toggle" class="text-white">🌙</button>
+
+        <!-- Dropdown Menu for Settings -->
+        <div class="relative inline-block text-left">
+          <button type="button" class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" id="menu-button" aria-expanded="true" aria-haspopup="true">
+            Настройки
+            <svg class="-mr-1 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path d="M10 7l-5 5h3v4h4v-4h3l-5-5zm0-2l-5 5h3v6h4v-6h3l-5-5z" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+          <div class="py-1" role="none">
+            <!-- Dark Mode Toggle -->
+            <button id="dark-mode-toggle" class="text-gray-700 block w-full px-4 py-2 text-left text-sm" role="menuitem" tabindex="-1">
+              🌙 Тёмный режим
+            </button>
+
+            <!-- Language Toggle -->
+            <button id="language-toggle" class="text-gray-700 block w-full px-4 py-2 text-left text-sm" role="menuitem" tabindex="-1">
+              Русский
+            </button>
+
+            <!-- Currency Toggle -->
+            <button id="currency-toggle" class="text-gray-700 block w-full px-4 py-2 text-left text-sm" role="menuitem" tabindex="-1">
+              ₽ RUB
+            </button>
+          </div>
+        </div>
+
         <button id="login-toggle" class="hover:underline text-sm">Личный кабинет</button>
         <div class="relative">
           <button id="favorites-toggle" class="hover:underline flex items-center text-sm">
@@ -197,18 +212,6 @@
             <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"></path></svg> Корзина
             <span id="cart-count" class="cart-count">0</span>
           </button>
-        </div>
-        <div class="relative">
-          <button id="menu-toggle" class="text-white">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-            </svg>
-          </button>
-          <div id="dropdown-menu" class="absolute right-0 mt-2 bg-white border rounded shadow-lg hidden">
-            <button id="dark-mode-toggle" class="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-200">Темный режим</button>
-            <button id="language-toggle" class="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-200">Русский язык</button>
-            <button id="currency-toggle" class="block w-full px-4 py-2 text-left text-gray-800 hover:bg-gray-200">Рубли</button>
-          </div>
         </div>
       </div>
     </div>
@@ -322,9 +325,7 @@
     </div>
 
     <!-- Products Grid -->
-    <div id="products" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 px-4">
-      <!-- Products will be dynamically inserted here -->
-    </div>
+    <div id="products" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 px-4"></div>
 
     <!-- Pagination -->
     <div class="flex justify-center space-x-2 mt-8">
@@ -349,9 +350,7 @@
       <div class="flex flex-col md:flex-row">
         <div class="md:w-1/2">
           <div class="product-carousel relative">
-            <div id="product-images" class="carousel flex">
-              <!-- Images will be inserted here -->
-            </div>
+            <div id="product-images" class="carousel flex"></div>
             <button id="prev-image" class="absolute top-1/2 left-2 transform -translate-y-1/2 bg-gray-200 p-2 rounded-full hover:bg-gray-300">←</button>
             <button id="next-image" class="absolute top-1/2 right-2 transform -translate-y-1/2 bg-gray-200 p-2 rounded-full hover:bg-gray-300">→</button>
           </div>
@@ -362,19 +361,11 @@
           <p id="product-rating" class="text-yellow-500 mb-4">★★★★☆</p>
           <div class="mb-4">
             <label class="block text-sm font-medium mb-1">Размер</label>
-            <select id="product-size" class="w-full p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:outline-none">
-              <option value="S">S</option>
-              <option value="M">M</option>
-              <option value="L">L</option>
-            </select>
+            <select id="product-size" class="w-full p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:outline-none"></select>
           </div>
           <div class="mb-4">
             <label class="block text-sm font-medium mb-1">Цвет</label>
-            <select id="product-color" class="w-full p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:outline-none">
-              <option value="black">Чёрный</option>
-              <option value="white">Белый</option>
-              <option value="blue">Синий</option>
-            </select>
+            <select id="product-color" class="w-full p-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:outline-none"></select>
           </div>
           <p id="product-description" class="text-gray-700 mb-6"></p>
           <div class="flex space-x-4">
@@ -393,9 +384,7 @@
       </div>
       <div class="mt-8">
         <h3 class="text-xl font-bold mb-4 wb-text-purple">Отзывы</h3>
-        <div id="reviews" class="space-y-6">
-          <!-- Reviews will be dynamically inserted here -->
-        </div>
+        <div id="reviews" class="space-y-6"></div>
         <div class="mt-4">
           <textarea id="review-text" placeholder="Оставьте свой отзыв..." class="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 focus:outline-none h-24"></textarea>
           <div class="flex items-center mt-2">
@@ -413,9 +402,7 @@
       </div>
       <div class="mt-8">
         <h3 class="text-xl font-bold mb-4 wb-text-purple">Похожие товары</h3>
-        <div id="recommended-products" class="grid grid-cols-2 gap-4">
-          <!-- Recommended products will be inserted here -->
-        </div>
+        <div id="recommended-products" class="grid grid-cols-2 gap-4"></div>
       </div>
       <button id="close-product" class="bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-gray-300 mt-6 w-full">Закрыть</button>
     </div>
@@ -425,9 +412,7 @@
   <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-30">
     <div class="bg-white p-6 rounded-lg w-full max-w-lg">
       <h2 class="text-xl font-bold mb-6 wb-text-purple">Корзина</h2>
-      <div id="cart-items" class="mb-6 max-h-64 overflow-y-auto">
-        <!-- Cart items will be dynamically inserted here -->
-      </div>
+      <div id="cart-items" class="mb-6 max-h-64 overflow-y-auto"></div>
       <p class="font-bold text-lg">Итого: <span id="cart-total">0 ₽</span></p>
       <div class="flex justify-end space-x-4 mt-6">
         <button id="close-cart" class="bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-gray-300">Закрыть</button>
@@ -440,9 +425,7 @@
   <div id="favorites-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-30">
     <div class="bg-white p-6 rounded-lg w-full max-w-lg">
       <h2 class="text-xl font-bold mb-6 wb-text-purple">Избранное</h2>
-      <div id="favorites-items" class="mb-6 max-h-64 overflow-y-auto">
-        <!-- Favorites items will be dynamically inserted here -->
-      </div>
+      <div id="favorites-items" class="mb-6 max-h-64 overflow-y-auto"></div>
       <div class="flex justify-end mt-6">
         <button id="close-favorites" class="bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-gray-300">Закрыть</button>
       </div>
@@ -510,9 +493,7 @@
   <div id="compare-modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-30">
     <div class="bg-white p-6 rounded-lg w-full max-w-4xl">
       <h2 class="text-xl font-bold mb-6 wb-text-purple">Сравнение товаров</h2>
-      <div id="compare-products" class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <!-- Compare products will be dynamically inserted here -->
-      </div>
+      <div id="compare-products" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
       <button id="close-compare" class="bg-gray-200 text-gray-700 px-6 py-2 rounded-full hover:bg-gray-300 mt-6 w-full">Закрыть</button>
     </div>
   </div>
@@ -528,7 +509,6 @@
 
   <!-- Chatbot -->
   <button id="chatbot-toggle" class="chatbot-btn">Чат с поддержкой</button>
-
   <div id="chatbot-modal" class="chatbot-modal">
     <div id="chatbot-messages" class="p-4"></div>
     <div class="p-4 border-t">
@@ -572,11 +552,15 @@
   <script>
     // Sample products data with availability
     const products = [
-      { id: 1, name: "Футболка классическая", price: 999, originalPrice: 1299, category: "clothing", brand: "BrandA", rating: 4, images: ["https://via.placeholder.com/300?text=Футболка+1", "https://via.placeholder.com/300?text=Футболка+2"], description: "Комфортная хлопковая футболка на каждый день.", sizes: ["S", "M", "L", "XL"], colors: ["black", "white", "blue"], discount: 23, promo: "Хит продаж", availability: "in_stock", reviews: [ { user: "Иван", rating: 5, text: "Отличная футболка!" }, { user: "Анна", rating: 4, text: "Хорошее качество, но цвет немного не тот." } ] },
+      { id: 1, name: "Футболка классическая", price: 999, originalPrice: 1299, category: "clothing", brand: "BrandA", rating: 4, images: ["https://via.placeholder.com/300?text=Футболка+1", "https://via.placeholder.com/300?text=Футболка+2"], description: "Комфортная хлопковая футболка на каждый день.", sizes: ["S", "M", "L", "XL"], colors: ["black", "white", "blue"], discount: 23, promo: "Хит продаж", availability: "in_stock", reviews: [
+        { user: "Иван", rating: 5, text: "Отличная футболка!" },
+        { user: "Анна", rating: 4, text: "Хорошее качество, но цвет немного не тот." }
+      ] },
       { id: 2, name: "Джинсы Slim Fit", price: 2999, originalPrice: 3999, category: "clothing", brand: "BrandB", rating: 5, images: ["https://via.placeholder.com/300?text=Джинсы+1", "https://via.placeholder.com/300?text=Джинсы+2"], description: "Стильные джинсы slim fit из плотного денима.", sizes: ["S", "M", "L"], colors: ["black", "blue"], discount: 25, promo: "Новинка", availability: "in_stock", reviews: [] },
-      { id: 3, name: "Кроссовки беговые", price: 3499, category: "shoes", brand: "BrandC", rating: 4, images: ["https://via.placeholder.com/300?text=Кроссовки+1", "https://via.placeholder.com/300?text=Кроссовки+2"], description: "Лёгкие и удобные кроссовки для бега.", sizes: ["M", "L", "XL"], colors: ["white", "black", "red"], promo: "Бесплатная доставка", availability: "out_of_stock", reviews: [{ user: "Пётр", rating: 3, text: "Неплохие, но не очень удобные." }] }
+      { id: 3, name: "Кроссовки беговые", price: 3499, category: "shoes", brand: "BrandC", rating: 4, images: ["https://via.placeholder.com/300?text=Кроссовки+1", "https://via.placeholder.com/300?text=Кроссовки+2"], description: "Лёгкие и удобные кроссовки для бега.", sizes: ["M", "L", "XL"], colors: ["white", "black", "red"], promo: "Бесплатная доставка", availability: "out_of_stock", reviews: [
+        { user: "Пётр", rating: 3, text: "Неплохие, но не очень удобные." }
+      ] }
     ];
-
     let cart = JSON.parse(localStorage.getItem('cart')) || [];
     let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
     let compareList = JSON.parse(localStorage.getItem('compare')) || [];
@@ -663,8 +647,8 @@
     const orderStatus = document.getElementById('order-status');
     const closeTrackOrder = document.getElementById('close-track-order');
     const notification = document.getElementById('notification');
-    const languageSelect = document.getElementById('language');
-    const currencySelect = document.getElementById('currency');
+    const languageSelect = document.getElementById('language-toggle');
+    const currencySelect = document.getElementById('currency-toggle');
     const darkModeToggle = document.getElementById('dark-mode-toggle');
     const reviewsContainer = document.getElementById('reviews');
     const reviewText = document.getElementById('review-text');
@@ -686,7 +670,7 @@
     const chatbotInput = document.getElementById('chatbot-input');
     const chatbotSend = document.getElementById('chatbot-send');
 
-    // Show notification
+    // Show notification function
     function showNotification(message) {
       notification.textContent = message;
       notification.style.display = 'block';
@@ -1043,7 +1027,6 @@
       suggestionsContainer.innerHTML = filtered.map(p => `<div onclick="selectSuggestion('${p.name}')">${p.name} (${p.brand})</div>`).join('');
       suggestionsContainer.style.display = filtered.length ? 'block' : 'none';
     }
-
     window.selectSuggestion = function(value) {
       searchInput.value = value;
       mobileSearchInput.value = value;
@@ -1077,7 +1060,6 @@
       updateCompareCount();
       openProductModal(selectedProduct.id);
     });
-
     compareToggle.addEventListener('click', () => {
       if (compareList.length > 0) {
         compareModal.classList.remove('hidden');
@@ -1086,9 +1068,7 @@
         showNotification(language === 'ru' ? 'Нет товаров для сравнения' : 'No items to compare');
       }
     });
-
     closeCompare.addEventListener('click', () => compareModal.classList.add('hidden'));
-
     function renderCompareProducts() {
       compareProducts.innerHTML = compareList.map(product => {
         const price = currency === 'usd' ? (product.price / 75).toFixed(2) : product.price;
@@ -1103,7 +1083,6 @@
         `;
       }).join('');
     }
-
     window.removeFromCompare = function(productId) {
       compareList = compareList.filter(comp => comp.id !== productId);
       localStorage.setItem('compare', JSON.stringify(compareList));
@@ -1111,7 +1090,6 @@
       renderCompareProducts();
       if (compareList.length === 0) compareModal.classList.add('hidden');
     };
-
     function updateCompareCount() {
       compareCount.textContent = compareList.length;
     }
@@ -1122,7 +1100,6 @@
       orderStatus.textContent = `${language === 'ru' ? 'Статус заказа' : 'Order status'}: ${status}`;
       trackOrderModal.classList.remove('hidden');
     };
-
     closeTrackOrder.addEventListener('click', () => trackOrderModal.classList.add('hidden'));
 
     // Edit profile
@@ -1132,7 +1109,6 @@
       editPhone.value = profilePhone.textContent;
       editProfileForm.classList.remove('hidden');
     });
-
     saveProfile.addEventListener('click', () => {
       profileName.textContent = editName.value;
       profileEmail.textContent = editEmail.value;
@@ -1140,19 +1116,17 @@
       editProfileForm.classList.add('hidden');
       showNotification(language === 'ru' ? 'Профиль обновлён' : 'Profile updated');
     });
-
     cancelEdit.addEventListener('click', () => editProfileForm.classList.add('hidden'));
 
     // Language and currency switch
-    languageSelect.addEventListener('change', (e) => {
-      language = e.target.value;
+    languageSelect.addEventListener('click', (e) => {
+      language = language === 'ru' ? 'en' : 'ru';
       showNotification(language === 'ru' ? 'Язык изменён' : 'Language changed');
       renderProducts(applyFilters(true));
       updateChatbotUI();
     });
-
-    currencySelect.addEventListener('change', (e) => {
-      currency = e.target.value;
+    currencySelect.addEventListener('click', (e) => {
+      currency = currency === 'rub' ? 'usd' : 'rub';
       renderProducts(applyFilters(true));
       updateCart();
     });
@@ -1177,7 +1151,6 @@
         unknown: "Sorry, I didn’t understand. Please try rephrasing your question."
       }
     };
-
     function addChatbotMessage(message, isUser = false) {
       const messageDiv = document.createElement('div');
       messageDiv.classList.add('chatbot-message', isUser ? 'user' : 'bot');
@@ -1185,20 +1158,17 @@
       chatbotMessages.appendChild(messageDiv);
       chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     }
-
     function updateChatbotUI() {
       chatbotToggle.textContent = language === 'ru' ? 'Чат с поддержкой' : 'Support Chat';
       chatbotInput.placeholder = language === 'ru' ? 'Введите сообщение...' : 'Enter message...';
       chatbotSend.textContent = language === 'ru' ? 'Отправить' : 'Send';
     }
-
     chatbotToggle.addEventListener('click', () => {
       chatbotModal.style.display = chatbotModal.style.display === 'block' ? 'none' : 'block';
       if (chatbotModal.style.display === 'block' && chatbotMessages.children.length === 0) {
         addChatbotMessage(chatbotResponses[language].greeting);
       }
     });
-
     chatbotSend.addEventListener('click', () => {
       const message = chatbotInput.value.trim();
       if (!message) return;
@@ -1209,7 +1179,6 @@
         addChatbotMessage(response);
       }, 1000);
     });
-
     chatbotInput.addEventListener('keypress', (e) => {
       if (e.key === 'Enter') chatbotSend.click();
     });
@@ -1219,12 +1188,10 @@
       applyFilters();
       showSuggestions(searchInput, searchSuggestions);
     });
-
     mobileSearchInput.addEventListener('input', () => {
       applyFilters();
       showSuggestions(mobileSearchInput, mobileSearchSuggestions);
     });
-
     minPriceInput.addEventListener('input', applyFilters);
     maxPriceInput.addEventListener('input', applyFilters);
     brandFilter.addEventListener('change', applyFilters);
@@ -1233,7 +1200,6 @@
     availabilityFilter.addEventListener('change', applyFilters);
     ratingFilter.addEventListener('change', applyFilters);
     sortSelect.addEventListener('change', applyFilters);
-
     categories.forEach(category => {
       category.addEventListener('click', () => {
         categories.forEach(cat => cat.classList.remove('bg-purple-100'));
@@ -1258,7 +1224,6 @@
         loginCodeSection.classList.remove('hidden');
       }
     });
-
     verifyCode.addEventListener('click', () => {
       const code = verificationCodeInput.value.trim();
       if (!code) {
@@ -1274,7 +1239,6 @@
 
     // Logout functionality
     logout.addEventListener('click', logoutUser);
-
     cartToggle.addEventListener('click', () => cartModal.classList.toggle('hidden'));
     closeCart.addEventListener('click', () => cartModal.classList.add('hidden'));
     favoritesToggle.addEventListener('click', () => favoritesModal.classList.toggle('hidden'));
@@ -1328,20 +1292,6 @@
     updateCompareCount();
     applyFilters();
     updateChatbotUI();
-
-    // Dropdown menu toggle
-    const menuToggleElement = document.getElementById('menu-toggle');
-    const dropdownMenu = document.getElementById('dropdown-menu');
-
-    menuToggleElement.addEventListener('click', () => {
-      dropdownMenu.classList.toggle('hidden');
-    });
-
-    document.addEventListener('click', (event) => {
-      if (!menuToggleElement.contains(event.target) && !dropdownMenu.contains(event.target)) {
-        dropdownMenu.classList.add('hidden');
-      }
-    });
   </script>
 </body>
 </html>

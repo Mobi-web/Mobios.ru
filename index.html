@@ -208,8 +208,7 @@
           <option value="rub">₽ RUB</option>
           <option value="usd">$ USD</option>
         </select>
-    
-
+            <script>
         <select id="language" class="bg-transparent text-white border-none">
           <option value="ru">Рус</option>
           <option value="en">Eng</option>
@@ -1084,6 +1083,11 @@ function updateFavorites() {
   });
   favoritesCount.textContent = favorites.length;
 }
+<script>
+  function myFunction() {
+    var selectedValue = document.querySelector('select').value;
+    console.log(selectedValue);
+  }
 
 // Apply filters
 function applyFilters(returnFiltered = false) {

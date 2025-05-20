@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -182,9 +182,6 @@
           <input type="text" id="search" placeholder="Поиск товаров, брендов, категорий..." class="p-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500 w-64 hidden md:block">
           <div id="search-suggestions" class="suggestions"></div>
         </div>
-        <select id="language" class="bg-transparent text-white border-none">
-          
-        </select>
         <select id="currency" class="bg-transparent text-white border-none">
           <option value="rub">₽RU</option>
           <option value="usd">$USD</option>
@@ -523,7 +520,7 @@
   </div>
 
   <!-- Chatbot -->
-  <button id="chatbot-toggle" 
+  <button id="chatbot-toggle"
   class="chatbot-btn">Чат с поддержкой</button>
 <div id="chatbot-modal" class="chatbot-modal">
 <div id="chatbot-messages" class="p-4"></div>
@@ -708,7 +705,6 @@ const trackOrderModal = document.getElementById('track-order-modal');
 const orderStatus = document.getElementById('order-status');
 const closeTrackOrder = document.getElementById('close-track-order');
 const notification = document.getElementById('notification');
-const languageSelect = document.getElementById('language');
 const currencySelect = document.getElementById('currency');
 const darkModeToggle = document.getElementById('dark-mode-toggle');
 const reviewsContainer = document.getElementById('reviews');
@@ -1206,13 +1202,6 @@ compareProduct.addEventListener('click', () => {
     cancelEdit.addEventListener('click', () => editProfileForm.classList.add('hidden'));
 
     // Language and currency switch
-    languageSelect.addEventListener('change', (e) => {
-      language = e.target.value;
-      showNotification(language === 'ru' ? 'Язык изменён' : 'Language changed');
-      renderProducts(applyFilters(true));
-      updateChatbotUI();
-    });
-
     currencySelect.addEventListener('change', (e) => {
       currency = e.target.value;
       renderProducts(applyFilters(true));
@@ -1394,4 +1383,3 @@ compareProduct.addEventListener('click', () => {
   </script>
 </body>
 </html>
-  
